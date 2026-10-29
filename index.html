@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Undangan Digital</title>
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet">
+<style>
+/* BACKGROUND tetap diam */
+#page1 {
+  background-attachment: fixed;}
+
+/* ANIMASI dasar */
+@keyframes zoomFade {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* kasih animasi ke semua teks page 1 */
+#page1 .judul,
+#page1 .nama,
+#page1 .date,
+#page1 .tamu,
+#page1 .namatamu,
+#page1 .ditempat,
+#page1 button {
+  opacity: 0;
+  transform: scale(0.4);
+  animation: zoomFade 1.5s ease forwards;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  user-select:none;
+}
+
+html,body{
+  width:100%;
+  height: auto !important ;
+  overflow-x:hidden;
+}
+
+body{
+  overflow:hidden;
+}
+ 
+body.open-scroll{
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+  
+#cover-page{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  transition:opacity1.6s ease;
+}
+
+#main-content{
+  position:static;
+  width:100%;
+}
+
+.block{
+  width:100%;
+  min-height:100vh;
+  height:auto;
+  position:relative;
+}
+.mempelai,.frame,.undangan-card{position: static !important;}
+
+/* HALAMAN */
+.page{
+  width:100%;
+  min-height:100vh;
+  position:relative;
+}
+
+/* PAGE 1 */
+#page1{
+  background:
+  linear-gradient(rgba(0,0,0,0.4),
+  rgba(0,0,0,0.4)),
+  url('musik/bg.jpg');
+
+  background-size:cover;
+  background-position:center;
+
+  width:100%;
+  height:100vh;
+
+  color:white;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  padding-top:120px;
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  text-align:center;
+
+  z-index:999;
+
+  transition:opacity 1.6s ease;
+}
+
+/* PAGE 2 */
+#page2{
+  background:
+  linear-gradient(rgba(0,0,0,0.4),
+  rgba(0,0,0,0.4)),
+  url('musik/bg2.jpg');
+  background-size:cover;
+  background-position:center;
+  color:white;
+  padding:20px;
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  
+}
+/* PAGE 3 */
+#page3{
+  background:#f0f0f3;
+  min-height:100vh;
+  overflow:hidden;
+  color:#444;
+  position:relative;
+  z-index:1;
+
+}
+
+#page4{
+  background:#f0f0f3;
+  min-height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  color:#444;
+  position:relative;
+  z-index:2;
+}
+
+/* PAGE 5 */
+#page5{
+  background: #f0f0f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 15px;
+}
+
+/* PAGE 6 */
+#page6{
+  background:#bcc5cf;
+  padding:50px 20px 300px;
+  min-height:100vh;
+}
+
+
+
+/* WEDDING GIFT */
+
+.gift-title{
+  text-align:center;
+  font-family:'Cinzel',serif;
+  letter-spacing:8px;
+  font-size:34px;
+  color:#4d5560;
+  margin-bottom:25px;
+}
+
+.gift-desc{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 50px;
+  line-height:1.8;
+  font-size:16px;
+  color:#5f6772;
+}
+
+.gift-card{
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:30px;
+  padding:25px;
+  margin-bottom:25px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  box-shadow:
+  0 8px 25px rgba(0,0,0,.08);
+}
+
+.bank-info{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.bank-logo{
+  width:75px;
+  height:75px;
+  object-fit:contain;
+}
+
+.bank-name{
+  font-family:'Cinzel',serif;
+  font-size:28px;
+  color:#303030;
+}
+
+.bank-number{
+  font-size:24px;
+  font-weight:600;
+  margin-top:6px;
+  color:#222;
+}
+
+.bank-owner{
+  margin-top:6px;
+  color:#666;
+}
+
+.copy-btn{
+  position:static !important;
+  transform:none !important;
+
+  background:#9099a5;
+  color:white;
+  border:none;
+  padding:12px 24px;
+  border-radius:12px;
+
+  font-size:15px;
+  font-family:'Cinzel',serif;
+
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.copy-btn:hover{
+  transform:translateY(-2px);
+}
+
+
+@media(max-width:768px){
+
+  .gift-card{
+    padding:20px;
+  }
+
+  .bank-logo{
+    width:55px;
+    height:55px;
+  }
+
+  .bank-name{
+    font-size:18px;
+  }
+
+  .bank-number{
+    font-size:18px;
+  }
+
+  .copy-btn{
+    padding:10px 16px;
+    font-size:13px;
+  }
+
+}
+
+.gallery-title{
+  text-align:center;
+  font-family:'Cinzel', serif;
+  letter-spacing:5px;
+  color:#9099a5;
+  margin-bottom:40px;
+  font-size:30px;
+}
+
+.hero-photo{
+  margin-bottom:20px;
+}
+
+.hero-photo img{
+  width:100%;
+  display:block;
+  border-radius:5px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:5px;
+}
+
+.undangan-card{
+  width: 92%;
+  max-width: 430px;
+  background: #b8c2cf70;
+  border-radius: 40px;
+  overflow: hidden;
+}
+.foto-bingkai{
+  width: 100%;
+  border-top-left-radius: 140px;
+  border-top-right-radius: 140px;
+  overflow: hidden;
+}
+.foto-bingkai img{
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.info-panel{
+  padding: 35px 25px 40px;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #ffffff;
+}
+.info-panel h2{
+  font-size: 34px;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+.info-panel p{
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 5px 0;
+}
+.map-button{
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 35px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+/* isi */
+
+.mempelai{
+  width:100%;
+  text-align:center;
+  padding-top:70px;
+  padding-bottom:80px;
+  color:#7d7d7d
+}
+
+/* title atas */
+
+.title{
+  font-family:'Cinzel', serif;
+  letter-spacing:5px;
+  font-size:18px;
+  margin-bottom:40px;
+}
+
+.galeri{
+  font-family:'Cinzel', serif;
+  letter-spacing:5px;
+  font-size:30px;
+  margin-bottom:40px;
+  text-align:center;
+}
+
+/* frame foto */
+
+.frame{
+  width:550px;
+  height:750px;
+
+  margin:auto;
+
+  border:8px solid #bfc3c8;
+
+  border-top-left-radius:200px;
+  border-top-right-radius:200px;
+
+  overflow:hidden;
+  background:white;
+}
+
+/* foto */
+
+.foto{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+/* nama */
+
+.nama2{
+  font-family:'.bad-script-regular', cursive;
+
+  font-size:50px;
+
+  margin-top:25px;
+
+  color:#7d7d7d;
+}
+
+/* orang tua */
+
+.ortu{
+font-family:'.bad-script-regular', cursive;
+  width:80%;
+
+  margin:15px auto;
+
+  font-size:15px;
+
+  line-height:1.8;
+
+  color:#7d7d7d;
+}
+
+/* FONT */
+.judul{
+  font-family:'Cinzel', serif;
+  letter-spacing:4px;
+  font-size:20px;
+}
+
+.nama{
+  font-family:'.bad-script-regular', cursive;
+  letter-spacing: 4px;
+  font-size:60px;
+  text-align: center;
+}
+
+.date{
+  font-family:'Cinzel', serif;
+  margin-top:20px;
+  font-size:20px;
+  text-align: center;
+}
+
+.tamu{
+  font-family:'Cinzel', serif;
+  position: absolute;
+  bottom: 400px;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 2px;
+  font-size:15px;
+  margin-top:10px;
+}
+
+.namatamu{
+  font-family:'Cinzel',Serif;
+  position: absolute;
+  bottom: 345px;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 2px;
+  font-size:26px;
+  margin-top:10px;
+  
+}
+.ditempat{
+  font-family:'Cinzel', serif;
+  text-align:center;
+  letter-spacing:2px;
+  font-size:13px;
+  margin-top:455px;
+}
+
+.tamu2{
+  font-family:'Cinzel', serif;
+  width:80%;
+
+  position:absolute;
+  left:50%;
+  top:65%;
+
+  transform:translateX(-50%);
+
+  letter-spacing:2px;
+  font-size:15px;
+  line-height:1.8;
+  text-align:center;
+}
+
+button{
+  position: absolute;
+  bottom: 290px;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px;
+  border-radius:10px;
+  font-size: 15px;
+  font-family:'Cinzel', serif;
+  color: grey;
+  cursor: pointer;
+}
+
+.music-btn{
+  position:fixed;
+
+  top:15px;
+  right:15px;
+
+  background:none;
+  border:none;
+  outline:none;
+
+  font-size:16px;
+
+  color:rgba(255,255,255,0.7);
+
+  z-index:9999;
+
+  cursor:pointer;
+
+  padding:0;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes spinMusic{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+#musicIcon{
+  display:inline-block;
+  animation:spinMusic 4s linear infinite;
+  animation-play-state:paused;
+}
+
+/* BUBBLE ANIMATION */
+.bubbles{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+}
+
+.bubbles span{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.35);
+  box-shadow:0 0 25px rgba(255,255,255,0.25);
+  backdrop-filter:blur(2px);
+filter: blur(0.5px);
+  width:15px;
+  height:15px;
+
+  top:-20vh;
+  opacity:0;
+
+  animation:floatRandom 35s linear infinite;
+}
+
+.bubbles span:nth-child(1){
+  left:-5%;
+  animation-duration:18s;
+  animation-delay:0s;
+}
+
+.bubbles span:nth-child(2){
+  left:99%;
+  width:14px;
+  height:14px;
+  animation-duration:22s;
+  animation-delay:2s;
+}
+
+.bubbles span:nth-child(3){
+  left:35%;
+  width:18px;
+  height:18px;
+  animation-duration:14s;
+  animation-delay:1s;
+}
+
+.bubbles span:nth-child(4){
+  left:52%;
+  width:28px;
+  height:28px;
+  animation-duration:22s;
+  animation-delay:3s;
+}
+
+.bubbles span:nth-child(5){
+  left:60%;
+
+  width:20px;
+  height:20px;
+  animation-duration:10s;
+  animation-delay:2s;
+}
+
+.bubbles span:nth-child(6){
+  left:-15%;
+
+  width:16px;
+  height:16px;
+  animation-duration:16s;
+  animation-delay:1s;
+}
+
+.bubbles span:nth-child(7){
+  left:2%;
+  
+  width:12px;
+  height:12px;
+  animation-duration:7s;
+  animation-delay:1s;
+}
+
+.bubbles span:nth-child(8){
+  left:8%;
+  
+  width:24px;
+  height:24px;
+  animation-duration:20s;
+  animation-delay:4s;
+}
+
+.bubbles span:nth-child(9){
+  left:90%;
+
+  width:18px;
+  height:18px;
+  animation-duration:9s;
+  animation-delay:2s;
+}
+
+.bubbles span:nth-child(10){
+  left:25%;
+  width:30px;
+  height:30px;
+  animation-duration:25s;
+  animation-delay:5s;
+}
+
+.bubbles span:nth-child(11){
+  left:62%;
+  width:16px;
+  height:16px;
+  animation-duration:11s;
+  animation-delay:3s;
+}
+
+.bubbles span:nth-child(12){
+  left:45%;
+  width:20px;
+  height:20px;
+  animation-duration:17s;
+  animation-delay:2s;
+}
+
+.bubbles span:nth-child(even){
+  --x: 40vw;
+}
+
+.bubbles span:nth-child(odd){
+  --x: -30vw;
+}
+
+@keyframes floatRandom {
+  0% {
+    transform: translate(-10vw, -20vh) scale(0.6);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translate(30vw, 120vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+#gallery-page{
+  background:#bcc5cf;
+  padding:50px 20px;
+}
+
+.gallery-title{
+  text-align:center;
+  font-family:'Cinzel', serif;
+  letter-spacing:5px;
+  color:#9099a5;
+  margin-bottom:40px;
+  font-size:30px;
+}
+
+.hero-photo{
+  margin-bottom:20px;
+}
+
+.hero-photo img{
+  width:100%;
+  display:block;
+  cursor:pointer;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gallery-grid img:hover{
+  transform:scale(1.03);
+}
+
+/* FULLSCREEN */
+
+#photoViewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  z-index:99999;
+}
+
+#photoViewer img{
+  max-width:95%;
+  max-height:95%;
+}
+
+.close-viewer{
+  position:absolute;
+  top:20px;
+  right:25px;
+
+  color:white;
+  font-size:40px;
+
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+  <span id="musicIcon">♫</span>
+</button>
+
+<!-- PAGE 1 -->
+<section id="page1" class="page">
+
+<h1 class="judul">
+THE WEDDING OF
+</h1>
+
+<h1 class="nama">
+APAI & AQ
+</h1>
+
+<div class="date">
+Minggu, 24 Mei 2026
+</div>
+
+<div class="tamu">
+  Kepada Bapak/Ibu/Saudara/i
+  </div>
+
+  <div class="namatamu">
+ SUKAMTO
+ </div>
+ 
+ <div class="ditempat">
+  Di Tempat
+  </div>
+
+<button onclick="openInvite()">
+Buka Undangan
+</button>
+
+
+</section>
+<section id="page2" class="page">
+ <div class="bubbles">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+  <div class="scrollArea">
+<!-- PAGE 2 -->
+<h1 class="nama">
+APAI & AQ
+</h1>
+
+<p class="date">
+Minggu, 24 Mei 2026
+</p>
+
+<p class="tamu2">
+What began as a simple meeting has grown into 10 beautiful years of laughter, trust, and love. <br>
+I can't wait for the next chapter.
+</p>
+</div>
+  </section>
+
+<!-- PAGE 3 -->
+
+<section id="page3" class="page">
+
+<div class="mempelai">
+
+  <div class="title">
+    MEMPELAI PRIA
+  </div>
+
+  <div class="frame">
+
+    <img src="musik/aq1.jpg" class="foto">
+
+  </div>
+
+  <h1 class="nama2">
+    AQ
+  </h1>
+
+<p class="ortu">
+  Anak ketiga dari Ibu Hamidah
+  dan Ibu Nianti
+</p>
+
+</div>
+</section>
+
+
+<!-- PAGE 4  -->
+<section id="page4" class="page">
+<div class="mempelai">
+
+  <div class="title">
+    MEMPELAI WANITA
+  </div>
+
+  <div class="frame">
+
+    <img src="musik/ab1.jpg" class="foto">
+
+  </div>
+
+  <h1 class="nama2">
+    ABAI
+  </h1>
+
+ <p class="ortu">
+  Anak ketiga dari Ibu Hamidah
+  dan Ibu Nianti
+</p>
+
+</div>
+</section>
+
+
+<!-- PAGE 5  -->
+<section id="page5" class="page">
+  <div class="undangan-card">
+    <div class="foto-bingkai">
+      <img src="musik/tempat.jpg" alt="foto resepsi">
+    </div>
+
+    <!-- 下半信息面板 -->
+    <div class="info-panel">
+      <h2>Resepsi Malam</h2>
+      <p>Kamis, 28 Mei 2026</p>
+      <p>Pukul : 19.00 WIB - Selesai</p>
+      <p>Bertempat di<br><b>CROWN VISTA HOTEL</b><br>Komplex Top View Garden, Baloi Indah, Lubuk Baja</p>
+
+      <a href="https://maps.google.com/maps?daddr=1.1192991,104.0138641"
+   target="_blank"
+   class="map-button">
+
+📍 GOOGLE MAP
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 6 -->
+<section id="page6" class="page">
+  <div style="height:50px;"></div>
+<div class="galeri">
+    GALERI FOTO
+  </div>
+  
+  <div class="gallery-grid">
+
+    <img src="musik/g2.jpg" onclick="openPhoto(this.src)">
+    <img src="musik/g3.jpg" onclick="openPhoto(this.src)">
+    <img src="musik/g8.jpg" onclick="openPhoto(this.src)">
+    <img src="musik/g5.jpg" onclick="openPhoto(this.src)">
+    <img src="musik/g6.jpg" onclick="openPhoto(this.src)">
+    <img src="musik/g7.jpg" onclick="openPhoto(this.src)">
+
+  </div>
+
+<!-- PAGE 7 -->
+  <div style="height:300px;"></div>
+<div style="
+width:120px;
+height:1px;
+background:#8e97a3;
+margin:0 auto 20px;
+"></div>
+
+<h2 class="gift-title">WEDDING GIFT</h2>
+
+<div style="
+width:120px;
+height:1px;
+background:#8e97a3;
+margin:20px auto 35px;
+"></div>
+
+<p class="gift-desc">
+Tanpa mengurangi rasa hormat, bagi rekan-rekan dan sahabat
+yang hendak memberikan tanda kasih untuk kami,
+dapat melalui nomor rekening di bawah ini.
+</p>
+
+<div class="gift-card">
+
+  <div class="bank-info">
+
+    <img src="musik/mandiri.png" class="bank-logo">
+
+    <div>
+      <div class="bank-name">BANK MANDIRI</div>
+      <div class="bank-number" id="bni">
+        1720004263523
+      </div>
+      <div class="bank-owner">
+        A.n NIANTI
+      </div>
+    </div>
+
+  </div>
+
+  <button class="copy-btn"
+  onclick="copyRek('1720004263523')">
+  📋 Salin
+  </button>
+
+</div>
+
+<div class="gift-card">
+
+  <div class="bank-info">
+
+    <img src="musik/bri1.jpg" class="bank-logo">
+
+    <div>
+      <div class="bank-name">BANK BRI</div>
+      <div class="bank-number">
+        742101018364534
+      </div>
+      <div class="bank-owner">
+        A.n NIANTI
+      </div>
+    </div>
+
+  </div>
+
+  <button class="copy-btn"
+  onclick="copyRek('742101018364534')">
+  📋 Salin
+  </button>
+
+
+</div>
+</section>
+
+<!-- Fullscreen Viewer -->
+<div id="photoViewer">
+
+  <span class="close-viewer"
+  onclick="closePhoto()">×</span>
+
+  <img id="viewerImg">
+
+</div>
+
+
+<br><br>
+
+<audio id="music">
+  <source src="musik/01.mp3" type="audio/mpeg">
+</audio>
+
+</section>
+
+<script>
+
+
+function openPhoto(src){
+
+  document.getElementById('photoViewer')
+  .style.display='flex';
+
+  document.getElementById('viewerImg')
+  .src=src;
+
+}
+
+function closePhoto(){
+
+  document.getElementById('photoViewer')
+  .style.display='none';
+
+}
+
+function copyRek(nomor){
+
+  navigator.clipboard.writeText(nomor);
+
+  alert("Nomor rekening berhasil disalin");
+
+}
+function openInvite(){
+
+  document.body.classList.add('open-scroll');
+
+  document.getElementById("music").play();
+
+  document.getElementById("musicIcon")
+  .style.animationPlayState = "running";
+
+  document.getElementById("page1").style.opacity = "0";
+
+  setTimeout(() => {
+
+    document.getElementById("page1").remove();
+
+    document.getElementById("page2")
+    .scrollIntoView({behavior:"smooth"});
+
+  }, 1200);
+
+}
+
+function toggleMusic(){
+
+  const music = document.getElementById("music");
+  const icon = document.getElementById("musicIcon");
+
+  if(music.paused){
+
+    music.play();
+    icon.style.animationPlayState = "running";
+
+  }else{
+
+    music.pause();
+    icon.style.animationPlayState = "paused";
+
+  }
+
+}
+
+</script>
+
+
+</body>
+</html>
